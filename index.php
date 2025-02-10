@@ -116,7 +116,7 @@
 </head>
 <body>
 <div id="header">
-    <span id="span">Concesionario Jareño</span>
+    <span id="span">Concesionario La Corne</span>
     <div class="menu-container">
         <div class="menu">
             <button class="boton">COCHES</button>
