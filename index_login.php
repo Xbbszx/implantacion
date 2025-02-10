@@ -9,9 +9,6 @@ if (!$conn)
 {
     die("Conexión fallida: " . mysqli_connect_error());
 }
-$_SESSION['nombre'] = $row['nombre'];
-$_SESSION['apellido'] = $row['apellidos'];
-$_SESSION['tipo'] = $row['admin'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -127,6 +124,15 @@ $_SESSION['tipo'] = $row['admin'];
             background-color: red;
             color: white;
         }
+        .div1 {
+            background-color: white;
+        }
+        #span2 {
+            color: black;
+            font-size: 24px;
+            font-weight: bolder;
+            font-variant: small-caps;
+        }
     </style>
 </head>
 <body>
@@ -150,13 +156,14 @@ $_SESSION['tipo'] = $row['admin'];
         </div>
         <div class="auth-buttons">
             <a class="login" href="./login/logout.php"><button>Cerrar Sesión</button><a>
-            <label>
-            <?php
-                print $_SESSION['nombre'] . ' ' . $_SESSION['apellido'] . '';
-            ?>
-            </label>
         </div>
     </div>
+</div>
+<div class="div1">
+    <?php
+        print "<span id='span2'>Bienvenido ". $_SESSION['nombre'] . ' ' . $_SESSION['apellido'] . '</span><br><br>';
+    ?>
+    <p>Espero que disfrutes de nuestro concesionario</p>
 </div>
 </body>
 </html>

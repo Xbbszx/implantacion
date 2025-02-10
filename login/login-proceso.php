@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['error'] = "";
 $servername = "localhost";
 $username = "root";
 $password = "rootroot";
@@ -14,4 +15,16 @@ $passw = mysqli_real_escape_string($conn,$_REQUEST["password"]);
 $sql = "SELECT * FROM usuarios WHERE dni='$dni'";
 $res = mysqli_query($conn,$sql);
 $row = mysqli_fetch_assoc($res);
+if (strcasecmp($dni, $row['dni']) === 0 && password_verify($passw,$row['password']))
+{
+    header('Location: ../index_login.php');
+    $_SESSION['nombre'] = $row['nombre'];
+    $_SESSION['apellido'] = $row['apellidos'];
+    $_SESSION['tipo'] = $row['admin'];
+}
+else
+{
+    $_SESSION['error'] = "DNI o contraseña incorrecto";
+    header('Location: ./login.php');
+}
 ?>

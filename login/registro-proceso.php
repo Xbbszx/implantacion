@@ -1,4 +1,5 @@
 <?php
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "rootroot";
@@ -20,8 +21,8 @@ $consulta2 = mysqli_query($conn, $sqldni);
 $nfilas2 = mysqli_num_rows ($consulta2);
 if ($nfilas2 > 0)
 {
-    echo "Fallo al registrar";
-    exit;
+    $_SESSION['error'] = "Este DNI ya esta en uso";
+    header('Location: ./registro.php');
 }
 else
 {

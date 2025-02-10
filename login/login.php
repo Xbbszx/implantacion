@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -136,6 +139,16 @@
             font-weight: bolder;
             border-radius: 10px;
         }
+        .error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -165,6 +178,14 @@
 </div>
 <div id="elform">
     <form action="./login-proceso.php" method="post">
+        <h1>Iniciar Sesión</h1>
+        <?php
+            if (ISSET($_SESSION['error']))
+            {
+                print '<p class="error">' . $_SESSION['error'] . '</p>';
+                unset($_SESSION['error']);
+            }
+        ?>
         <label for="dni" class="letras">DNI:</label><br><input type="text" name="dni"><br><br>
         <label for="contraseña" class="letras">Contraseña:</label> <br><input type="password" name="password"><br><br>
         <input type="submit" value="Iniciar Sesión" id="botones">

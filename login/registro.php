@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -112,11 +115,21 @@
             background-color: red;
             color: white;
         }
+        .error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-align: center;
+        }
         #elform {
             padding-top: 50px;
             background-color: white;
             width: 30%;
-            height: 400px;
+            height: 490px;
             align-items: center;
             text-align: center;
             margin-top: 6%;
@@ -165,6 +178,14 @@
 </div>
 <div id="elform">
     <form action="./registro-proceso.php" method="post">
+        <h1>Registrarse</h1>
+        <?php
+            if (ISSET($_SESSION['error']))
+            {
+                print '<p class="error">' . $_SESSION['error'] . '</p>';
+                unset($_SESSION['error']);
+            }
+        ?>
         <label for="nombre" class="letras">Nombre:</label><br><input type="text" name="nombre"><br><br>
         <label for="apellido" class="letras">Apellido:</label> <br><input type="text" name="apellido"><br><br>
         <label for="contraseña" class="letras">Contraseña:</label> <br><input type="password" name="password"><br><br>
