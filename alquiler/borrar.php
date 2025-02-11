@@ -9,7 +9,7 @@ if (!$conn)
 {
     die("Conexión fallida: " . mysqli_connect_error());
 }
-$sql = "SELECT * FROM coches WHERE alquilado=1";
+$sql = "SELECT * FROM coches WHERE alquilado = 1";
 $consulta = mysqli_query ($conn,$sql);
 $nfilas = mysqli_num_rows ($consulta);
 ?>
@@ -19,7 +19,7 @@ $nfilas = mysqli_num_rows ($consulta);
     <meta charset="UTF-8">
     <link rel="icon" href="../img/link.jpg" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alquiler - Listar</title>
+    <title>Coches - Listar</title>
     <style>
         * {
             box-sizing: border-box;
@@ -164,6 +164,22 @@ $nfilas = mysqli_num_rows ($consulta);
             width: 1px; 
             white-space: nowrap;
         }
+        #sigma {
+            width: 100%;
+            text-align: center;
+        }
+        #botones {
+            padding-left: 20px;
+            padding-right: 20px;
+            padding: 10px;
+            background-color: red;
+            color: white;
+            font-variant: small-caps;
+            font-weight: bolder;
+            border-radius: 10px;
+        }
+
+
     </style>
 </head>
 <body>
@@ -282,8 +298,10 @@ $nfilas = mysqli_num_rows ($consulta);
 </div>
 <?php
 echo "<div id='elform'>";
+echo "<form action='./borrar-proceso.php' method='POST'>";
     print ("<table class='tabla'>\n");
     print ("<tr>\n");
+    print ("<th class='table-th'>Borrar</th>\n");
     print ("<th class='table-th'>Modelo</th>\n");
     print ("<th class='table-th'>Marca</th>\n");
     print ("<th class='table-th'>Color</th>\n");
@@ -291,19 +309,23 @@ echo "<div id='elform'>";
     print ("<th class='table-th'>Alquilado</th>\n");
     print ("<th class='table-th'>Foto</th>\n");
     print ("</tr>\n");
-    for ($i=0; $i<$nfilas; $i++)
+    while ($row = mysqli_fetch_assoc($consulta))
     {
-    $resultado = mysqli_fetch_array ($consulta);
     print ("<tr>\n");
-    print ("<td class='td'>" . $resultado['modelo'] . "</td>\n");
-    print ("<td class='td'>" . $resultado['marca'] . "</td>\n");
-    print ("<td class='td'>" . $resultado['color'] . "</td>\n");
-    print ("<td class='td'>" . $resultado['precio'] . "</td>\n");
+    print ("<td class='td'><input type='checkbox' name='delete_ids[]' value='" . $row['id_coche'] . "'></td>");
+    print ("<td class='td'>" . htmlspecialchars($row['modelo']) . "</td>\n");
+    print ("<td class='td'>" . htmlspecialchars($row['marca']) . "</td>\n");
+    print ("<td class='td'>" . htmlspecialchars($row['color']) . "</td>\n");
+    print ("<td class='td'>" . htmlspecialchars($row['precio']) . "</td>\n");
     print ("<td class='td'>Alquilado</td>\n");
-    print ("<td class='td'><img src='" . $resultado['foto'] . "'></td>\n");
+    print ("<td class='td'><img src='" . $row['foto'] . "'></td>\n");
     print ("</tr>\n");
     }
-    print ("</table>\n");
+    print ("</table><br>\n");
+    echo "<div id='sigma'>";
+    echo "<input type='submit' value='Eliminar' id='botones'>";
+    echo "</div>";
+    echo "</form>";
 ?>
 </div>
 </html>

@@ -17,6 +17,7 @@ $nfilas = mysqli_num_rows ($consulta);
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="../img/link.jpg" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coches - Listar</title>
     <style>
@@ -152,6 +153,19 @@ $nfilas = mysqli_num_rows ($consulta);
             text-align: center;
 
         }
+        .td img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .td {
+            padding: 0;
+            width: 1px; 
+            white-space: nowrap;
+        }
+
+
     </style>
 </head>
 <body>

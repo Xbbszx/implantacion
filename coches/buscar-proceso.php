@@ -21,6 +21,7 @@ $nfilas = mysqli_num_rows ($consulta);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="../img/link.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coches - Buscar</title>
     <style>
