@@ -1,4 +1,5 @@
 <?php
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "rootroot";
@@ -154,25 +155,113 @@ $nfilas = mysqli_num_rows ($consulta);
 <div id="header">
     <span id="span">Concesionario Jareño</span>
     <div class="menu-container">
-        <div class="menu">
-            <button class="boton">COCHES</button>
-            <ul class="boton-opciones">
-                <a href="../index.php"><li>Inicio</li></a>
-                <a href="./listar.php"><li>Listar</li></a>
-                <a href="./buscar.php"><li>Buscar</li></a>
-            </ul>
-        </div>
-        <div class="menu">
-            <button class="boton">ALQUILERES</button>
-            <ul class="boton-opciones">
-                <a href="../index.php"><li>Inicio</li></a>
-                <a href="../alquiler/listar.php"><li>Listar</li></a>
-            </ul>
-        </div>
-        <div class="auth-buttons">
-            <a class="login" href="../login/registro.php"><button>Registrar</button><a>
-            <a class="login" href="../login/login.php"><button>Iniciar Sesión</button><a>
-        </div>
+    <?php
+            if($_SESSION['tipo'] === 'com')
+            {
+                print '<div class="menu">';
+                    print '<button class="boton">COCHES</button>';
+                    print '<ul class="boton-opciones">';
+                        print '<a href="../index.php"><li>Inicio</li></a>';
+                        print '<a href="./listar.php"><li>Listar</li></a>';
+                        print '<a href="./buscar.php"><li>Buscar</li></a>';
+                    print '</ul>';
+                print '</div>';
+                print '<div class="menu">';
+                    print '<button class="boton">ALQUILERES</button>';
+                    print '<ul class="boton-opciones">';
+                        print '<a href="../index.php"><li>Inicio</li></a>';
+                        print '<a href="../alquiler/listar.php"><li>Listar</li></a>';
+                        print '<a href="../alquiler/alquilar.php"><li>Alquilar</li></a>';
+                   print '</ul>';
+                print '</div>';
+                        print '<div class="auth-buttons">';
+                            print '<a class="login" href="../login/logout.php"><button>Cerrar Sesión</button></a>';
+                        print '</div>';
+            }
+            elseif($_SESSION['tipo'] === 'usr')
+            {
+                print '<div class="menu">';
+                    print '<button class="boton">COCHES</button>';
+                    print '<ul class="boton-opciones">';
+                        print '<a href="../index.php"><li>Inicio</li></a>';
+                        print '<a href="./añadir.php"><li>Añadir</li></a>';
+                        print '<a href="./listar.php"><li>Listar</li></a>';
+                        print '<a href="./buscar.php"><li>Buscar</li></a>';
+                    print '</ul>';
+                print '</div>';
+                print '<div class="menu">';
+                    print '<button class="boton">ALQUILERES</button>';
+                    print '<ul class="boton-opciones">';
+                        print '<a href="../index.php"><li>Inicio</li></a>';
+                        print '<a href="../alquiler/listar.php"><li>Listar</li></a>';
+                   print '</ul>';
+                print '</div>';
+                print '<div class="auth-buttons">';
+                            print '<a class="login" href="../login/logout.php"><button>Cerrar Sesión</button></a>';
+                        print '</div>';
+            }
+            elseif($_SESSION['tipo'] === 'adm')
+            {
+                {
+                    print '<div class="menu">';
+                        print '<button class="boton">COCHES</button>';
+                        print '<ul class="boton-opciones">';
+                            print '<a href="../index.php"><li>Inicio</li></a>';
+                            print '<a href="./añadir.php"><li>Añadir</li></a>';
+                            print '<a href="./borrar.php"><li>Eliminar</li></a>';
+                            print '<a href="./modificar.php"><li>Modificar</li></a>';
+                            print '<a href="./listar.php"><li>Listar</li></a>';
+                            print '<a href="./buscar.php"><li>Buscar</li></a>';
+                        print '</ul>';
+                    print '</div>';
+                    print '<div class="menu">';
+                        print '<button class="boton">ALQUILERES</button>';
+                        print '<ul class="boton-opciones">';
+                            print '<a href="../index.php"><li>Inicio</li></a>';
+                            print '<a href="../alquiler/listar.php"><li>Listar</li></a>';
+                            print '<a href="../alquiler/borrar.php"><li>Borrar</li></a>';
+                       print '</ul>';
+                    print '</div>';
+                    print '<div class="menu">';
+                        print '<button class="boton">USUARIOS</button>';
+                        print '<ul class="boton-opciones">';
+                            print '<a href="../index.php"><li>Inicio</li></a>';
+                            print '<a href="./usuario/añadir.php"><li>Añadir</li></a>';
+                            print '<a href="./usuario/borrar.php"><li>Eliminar</li></a>';
+                            print '<a href="./usuario/modificar.php"><li>Modificar</li></a>';
+                            print '<a href="./usuario/listar.php"><li>Listar</li></a>';
+                            print '<a href="./usuario/buscar.php"><li>Buscar</li></a>';
+                            print '<a href="./usuario/buscar.php"><li>Buscar</li></a>';
+                       print '</ul>';
+                    print '</div>';
+                    print '<div class="auth-buttons">';
+                                print '<a class="login" href="../login/logout.php"><button>Cerrar Sesión</button></a>';
+                            print '</div>';
+                }
+            }
+            else 
+            {
+                print '<div class="menu">';
+                    print '<button class="boton">COCHES</button>';
+                    print '<ul class="boton-opciones">';
+                        print '<a href="../index.php"><li>Inicio</li></a>';
+                        print '<a href="./listar.php"><li>Listar</li></a>';
+                        print '<a href="./buscar.php"><li>Buscar</li></a>';
+                    print '</ul>';
+                print '</div>';
+                print '<div class="menu">';
+                    print '<button class="boton">ALQUILERES</button>';
+                    print '<ul class="boton-opciones">';
+                        print '<a href="../index.php"><li>Inicio</li></a>';
+                        print '<a href="../alquiler/listar.php"><li>Listar</li></a>';
+                   print '</ul>';
+                print '</div>';
+                print '<div class="auth-buttons">';
+                    print '<a class="login" href="../login/registro.php"><button>Registrar</button><a>';
+                    print '<a class="login" href="../login/login.php"><button>Iniciar Sesión</button><a>';
+                print '</div>';
+            }
+        ?>
     </div>
 </div>
 </div>

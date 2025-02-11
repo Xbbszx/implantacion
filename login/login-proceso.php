@@ -17,7 +17,7 @@ $res = mysqli_query($conn,$sql);
 $row = mysqli_fetch_assoc($res);
 if (strcasecmp($dni, $row['dni']) === 0 && password_verify($passw,$row['password']))
 {
-    header('Location: ../index_login.php');
+    header('Location: ../index.php');
     $_SESSION['nombre'] = $row['nombre'];
     $_SESSION['apellido'] = $row['apellidos'];
     $_SESSION['tipo'] = $row['admin'];
