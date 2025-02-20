@@ -5,34 +5,38 @@ $username = "root";
 $password = "rootroot";
 $dbname = "concesionario";
 $conn = mysqli_connect($servername, $username, $password, $dbname);
-if (!$conn) {
+if (!$conn)
+{
     die("Conexión fallida: " . mysqli_connect_error());
 }
+$coche = $_REQUEST['alquilar'];
+$_SESSION['alqui'] = $_REQUEST['alquilar'];
+$sql = "SELECT * FROM coches WHERE id_coche = $coche";
+$consulta = mysqli_query ($conn,$sql);
+$nfilas = mysqli_num_rows ($consulta);
+$row = mysqli_fetch_assoc($consulta);
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="./img/link.jpg" type="image/x-icon">
+    <link rel="icon" href="../img/link.jpg" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
+    <title>Coches - Listar</title>
     <style>
-        * {
+         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background-image: url(img/lambo.jpg);
+            background-image: url(../img/fondo.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
             height: 100vh;
         }
-
-
         #header {
             display: flex;
             flex-wrap: wrap;
@@ -42,23 +46,19 @@ if (!$conn) {
             justify-content: space-between;
             padding: 10px 20px;
         }
-
         #span {
             color: white;
             font-size: 24px;
             font-weight: bolder;
             font-variant: small-caps;
         }
-
         .menu-container {
             display: flex;
             gap: 20px;
         }
-
         .menu {
             position: relative;
         }
-
         .menu > .boton {
             color: white;
             font-size: 16px;
@@ -124,33 +124,79 @@ if (!$conn) {
             background-color: red;
             color: white;
         }
+        #elform {
+            padding-top: 50px;
+            background-color: white;
+            width: 30%;
+            height: 500px;
+            align-items: center;
+            text-align: center;
+            margin-top: 6%;
+            margin-left: 33%;
+            border-radius: 13px;
+            box-shadow: 5px 5px 5px black;
+        }
+        .letras {
+            font-variant: small-caps;
+            font-weight: bold;
+        }
+        #botones {
+            padding: 30px;
+            background-color: red;
+            color: white;
+            font-variant: small-caps;
+            font-weight: bolder;
+            border-radius: 10px;
+        }
+        .ima
+        {
+            width: 300px;
+            height: 250px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+        .letrikitik
+        {
+            font-size: 17px;
+        }
+        .error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 <div id="header">
     <span id="span">Concesionario Jareño</span>
     <div class="menu-container">
-        <?php
+    <?php
             if($_SESSION['tipo'] === 'com')
             {
                 print '<div class="menu">';
                     print '<button class="boton">COCHES</button>';
                     print '<ul class="boton-opciones">';
-                        print '<a href="index.php"><li>Inicio</li></a>';
-                        print '<a href="./coches/listar.php"><li>Listar</li></a>';
-                        print '<a href="./coches/buscar.php"><li>Buscar</li></a>';
+                        print '<a href="../index.php"><li>Inicio</li></a>';
+                        print '<a href="./listar.php"><li>Listar</li></a>';
+                        print '<a href="./buscar.php"><li>Buscar</li></a>';
                     print '</ul>';
                 print '</div>';
                 print '<div class="menu">';
                     print '<button class="boton">ALQUILERES</button>';
                     print '<ul class="boton-opciones">';
-                        print '<a href="index.php"><li>Inicio</li></a>';
-                        print '<a href="./alquiler/listar.php"><li>Listar</li></a>';
-                        print '<a href="./alquiler/alquilar.php"><li>Alquilar</li></a>';
+                        print '<a href="../index.php"><li>Inicio</li></a>';
+                        print '<a href="./listar.php"><li>Listar</li></a>';
+                        print '<a href="./alquilar.php"><li>Alquilar</li></a>';
                    print '</ul>';
                 print '</div>';
                         print '<div class="auth-buttons">';
-                            print '<a class="login" href="./login/logout.php"><button>Cerrar Sesión</button></a>';
+                            print '<a class="login" href="../login/logout.php"><button>Cerrar Sesión</button></a>';
                         print '</div>';
             }
             elseif($_SESSION['tipo'] === 'usr')
@@ -158,21 +204,21 @@ if (!$conn) {
                 print '<div class="menu">';
                     print '<button class="boton">COCHES</button>';
                     print '<ul class="boton-opciones">';
-                        print '<a href="index.php"><li>Inicio</li></a>';
-                        print '<a href="./coches/añadir.php"><li>Añadir</li></a>';
-                        print '<a href="./coches/listar.php"><li>Listar</li></a>';
-                        print '<a href="./coches/buscar.php"><li>Buscar</li></a>';
+                        print '<a href="../index.php"><li>Inicio</li></a>';
+                        print '<a href="../coches/añadir.php"><li>Añadir</li></a>';
+                        print '<a href="../coches/listar.php"><li>Listar</li></a>';
+                        print '<a href="../coches/buscar.php"><li>Buscar</li></a>';
                     print '</ul>';
                 print '</div>';
                 print '<div class="menu">';
                     print '<button class="boton">ALQUILERES</button>';
                     print '<ul class="boton-opciones">';
-                        print '<a href="index.php"><li>Inicio</li></a>';
-                        print '<a href="./alquiler/listar.php"><li>Listar</li></a>';
+                        print '<a href="../index.php"><li>Inicio</li></a>';
+                        print '<a href="./listar.php"><li>Listar</li></a>';
                    print '</ul>';
                 print '</div>';
                 print '<div class="auth-buttons">';
-                            print '<a class="login" href="./login/logout.php"><button>Cerrar Sesión</button></a>';
+                            print '<a class="login" href="../login/logout.php"><button>Cerrar Sesión</button></a>';
                         print '</div>';
             }
             elseif($_SESSION['tipo'] === 'adm')
@@ -181,26 +227,26 @@ if (!$conn) {
                     print '<div class="menu">';
                         print '<button class="boton">COCHES</button>';
                         print '<ul class="boton-opciones">';
-                            print '<a href="index.php"><li>Inicio</li></a>';
-                            print '<a href="./coches/añadir.php"><li>Añadir</li></a>';
-                            print '<a href="./coches/borrar.php"><li>Eliminar</li></a>';
-                            print '<a href="./coches/modificar.php"><li>Modificar</li></a>';
-                            print '<a href="./coches/listar.php"><li>Listar</li></a>';
-                            print '<a href="./coches/buscar.php"><li>Buscar</li></a>';
+                            print '<a href="../index.php"><li>Inicio</li></a>';
+                            print '<a href="../coches/añadir.php"><li>Añadir</li></a>';
+                            print '<a href="../coches/borrar.php"><li>Eliminar</li></a>';
+                            print '<a href="../coches/modificar.php"><li>Modificar</li></a>';
+                            print '<a href="../coches/listar.php"><li>Listar</li></a>';
+                            print '<a href="../coches/buscar.php"><li>Buscar</li></a>';
                         print '</ul>';
                     print '</div>';
                     print '<div class="menu">';
                         print '<button class="boton">ALQUILERES</button>';
                         print '<ul class="boton-opciones">';
-                            print '<a href="index.php"><li>Inicio</li></a>';
-                            print '<a href="./alquiler/listar.php"><li>Listar</li></a>';
-                            print '<a href="./alquiler/borrar.php"><li>Borrar</li></a>';
+                            print '<a href="../index.php"><li>Inicio</li></a>';
+                            print '<a href="./listar.php"><li>Listar</li></a>';
+                            print '<a href="./borrar.php"><li>Borrar</li></a>';
                        print '</ul>';
                     print '</div>';
                     print '<div class="menu">';
                         print '<button class="boton">USUARIOS</button>';
                         print '<ul class="boton-opciones">';
-                            print '<a href="index.php"><li>Inicio</li></a>';
+                            print '<a href="../index.php"><li>Inicio</li></a>';
                             print '<a href="./usuario/añadir.php"><li>Añadir</li></a>';
                             print '<a href="./usuario/borrar.php"><li>Eliminar</li></a>';
                             print '<a href="./usuario/modificar.php"><li>Modificar</li></a>';
@@ -210,7 +256,7 @@ if (!$conn) {
                        print '</ul>';
                     print '</div>';
                     print '<div class="auth-buttons">';
-                                print '<a class="login" href="./login/logout.php"><button>Cerrar Sesión</button></a>';
+                                print '<a class="login" href="../login/logout.php"><button>Cerrar Sesión</button></a>';
                             print '</div>';
                 }
             }
@@ -219,26 +265,42 @@ if (!$conn) {
                 print '<div class="menu">';
                     print '<button class="boton">COCHES</button>';
                     print '<ul class="boton-opciones">';
-                        print '<a href="index.php"><li>Inicio</li></a>';
-                        print '<a href="./coches/listar.php"><li>Listar</li></a>';
-                        print '<a href="./coches/buscar.php"><li>Buscar</li></a>';
+                        print '<a href="../index.php"><li>Inicio</li></a>';
+                        print '<a href="../coches/listar.php"><li>Listar</li></a>';
+                        print '<a href="../coches/buscar.php"><li>Buscar</li></a>';
                     print '</ul>';
                 print '</div>';
                 print '<div class="menu">';
                     print '<button class="boton">ALQUILERES</button>';
                     print '<ul class="boton-opciones">';
-                        print '<a href="index.php"><li>Inicio</li></a>';
-                        print '<a href="./alquiler/listar.php"><li>Listar</li></a>';
+                        print '<a href="../index.php"><li>Inicio</li></a>';
+                        print '<a href="../alquiler/listar.php"><li>Listar</li></a>';
                    print '</ul>';
                 print '</div>';
                 print '<div class="auth-buttons">';
-                    print '<a class="login" href="./login/registro.php"><button>Registrar</button><a>';
-                    print '<a class="login" href="./login/login.php"><button>Iniciar Sesión</button><a>';
+                    print '<a class="login" href="../login/registro.php"><button>Registrar</button><a>';
+                    print '<a class="login" href="../login/login.php"><button>Iniciar Sesión</button><a>';
                 print '</div>';
             }
         ?>
     </div>
 </div>
+</div>
+<div id="elform">
+    <form action="./alquilar-proceso2.php" method="post">
+        <?php
+            if (ISSET($_SESSION['error']))
+            {
+                print '<p class="error">' . $_SESSION['error'] . '</p>';
+                unset($_SESSION['error']);
+            }
+            echo "<p class='letrikitik'>Quieres alquilar el <b>" . $row['modelo'] . "</b><b> " . $row['marca'] . "</b> por un precio de <b>" . $row['precio'] . "€</b></p> <br>";
+            echo "<img src='" . $row['foto'] . "' class='ima'>";
+            echo "<p class='letrikitik'>Ahora mismo dispones de un saldo de <b>" . $_SESSION['saldo'] . "€</p> <br>";
+        ?>
+        <input type="submit" value="Alquilar Coche" id="botones"> 
+    </form>
+    <a href='./alquilar.php'><button id="botones">Volver</button></a>
+</div>
 </body>
 </html>
-
