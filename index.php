@@ -124,6 +124,19 @@ if (!$conn) {
             background-color: red;
             color: white;
         }
+        #centro {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
     </style>
 </head>
 <body>
@@ -206,7 +219,6 @@ if (!$conn) {
                             print '<a href="./usuario/modificar.php"><li>Modificar</li></a>';
                             print '<a href="./usuario/listar.php"><li>Listar</li></a>';
                             print '<a href="./usuario/buscar.php"><li>Buscar</li></a>';
-                            print '<a href="./usuario/buscar.php"><li>Buscar</li></a>';
                        print '</ul>';
                     print '</div>';
                     print '<div class="auth-buttons">';
@@ -238,6 +250,19 @@ if (!$conn) {
             }
         ?>
     </div>
+</div>
+<div id="centro">
+<?php
+    if($_SESSION['tipo'] === 'adm'||$_SESSION['tipo'] === 'com'||$_SESSION['tipo'] === 'usr')
+    {
+        echo "<b><p>Bienvenido " . $_SESSION['nombre'] . "</p><p>Tu saldo actualmente es de " . $_SESSION['saldo'] . "€</p></b>";
+    }
+    else
+    {
+        echo "<b><p>Bienvenido al concesionario</p><p>Registrate o Inicia sesion para mas opciones</p></b>";
+    }
+?>
+</p>
 </div>
 </body>
 </html>

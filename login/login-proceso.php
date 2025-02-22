@@ -18,7 +18,7 @@ $row = mysqli_fetch_assoc($res);
 if (strcasecmp($dni, $row['dni']) === 0 && password_verify($passw,$row['password']))
 {
     header('Location: ../index.php');
-    $_SESSION['id'] = $row['id_usuario']
+    $_SESSION['id'] = $row['id_usuario'];
     $_SESSION['nombre'] = $row['nombre'];
     $_SESSION['apellido'] = $row['apellidos'];
     $_SESSION['tipo'] = $row['admin'];

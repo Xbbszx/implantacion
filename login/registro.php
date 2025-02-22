@@ -187,11 +187,11 @@ session_start();
                 unset($_SESSION['error']);
             }
         ?>
-        <label for="nombre" class="letras">Nombre:</label><br><input type="text" name="nombre"><br><br>
-        <label for="apellido" class="letras">Apellido:</label> <br><input type="text" name="apellido"><br><br>
-        <label for="contraseña" class="letras">Contraseña:</label> <br><input type="password" name="password"><br><br>
-        <label for="DNI" class="letras">DNI:</label> <br><input type="text" name="dni"><br><br>
-        <label>Comprador</label> <input type="radio" name="tipo" value="com">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Vendedor</label> <input type="radio" name="tipo" value="usr"><br><br>
+        <label for="nombre" class="letras">Nombre:</label><br><input type="text" name="nombre" required><br><br>
+        <label for="apellido" class="letras">Apellido:</label> <br><input type="text" name="apellido" required><br><br>
+        <label for="contraseña" class="letras">Contraseña:</label> <br><input type="password" name="password" required><br><br>
+        <label for="DNI" class="letras">DNI:</label> <br><input type="text" name="dni" required><br><br>
+        <label>Comprador</label> <input type="radio" name="tipo" value="com" required >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Vendedor</label> <input type="radio" name="tipo" value="usr" required><br><br>
         <input type="submit" value="Registrarse" id="botones">
     </form>
 </div>

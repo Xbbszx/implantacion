@@ -19,7 +19,7 @@ $nfilas = mysqli_num_rows ($consulta);
     <meta charset="UTF-8">
     <link rel="icon" href="../img/link.jpg" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coches - Listar</title>
+    <title>Alquiler - Alquilar</title>
     <style>
         * {
             box-sizing: border-box;
@@ -257,12 +257,11 @@ $nfilas = mysqli_num_rows ($consulta);
                         print '<button class="boton">USUARIOS</button>';
                         print '<ul class="boton-opciones">';
                             print '<a href="../index.php"><li>Inicio</li></a>';
-                            print '<a href="./usuario/añadir.php"><li>Añadir</li></a>';
-                            print '<a href="./usuario/borrar.php"><li>Eliminar</li></a>';
-                            print '<a href="./usuario/modificar.php"><li>Modificar</li></a>';
-                            print '<a href="./usuario/listar.php"><li>Listar</li></a>';
-                            print '<a href="./usuario/buscar.php"><li>Buscar</li></a>';
-                            print '<a href="./usuario/buscar.php"><li>Buscar</li></a>';
+                            print '<a href="../usuario/añadir.php"><li>Añadir</li></a>';
+                            print '<a href="../usuario/borrar.php"><li>Eliminar</li></a>';
+                            print '<a href="../usuario/modificar.php"><li>Modificar</li></a>';
+                            print '<a href="../usuario/listar.php"><li>Listar</li></a>';
+                            print '<a href="../usuario/buscar.php"><li>Buscar</li></a>';
                        print '</ul>';
                     print '</div>';
                     print '<div class="auth-buttons">';

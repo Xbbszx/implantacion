@@ -5,25 +5,17 @@ $username = "root";
 $password = "rootroot";
 $dbname = "concesionario";
 $conn = mysqli_connect($servername, $username, $password, $dbname);
-if (!$conn)
-{
+if (!$conn) {
     die("Conexión fallida: " . mysqli_connect_error());
 }
-$modelo = mysqli_real_escape_string($conn,$_REQUEST["modelo"]);
-$marca = mysqli_real_escape_string($conn,$_REQUEST["marca"]);
-$color = mysqli_real_escape_string($conn,$_REQUEST["color"]);
-$precio = mysqli_real_escape_string($conn,$_REQUEST["precio"]);
-$sql = "SELECT * FROM coches WHERE modelo LIKE '%$modelo%' AND marca LIKE '%$marca%' AND color LIKE '%$color%' AND precio LIKE  '%$precio%'";
-$consulta = mysqli_query ($conn,$sql);
-$nfilas = mysqli_num_rows ($consulta);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="../img/link.png" type="image/x-icon">
+    <link rel="icon" href="../img/link.jpg" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coches - Buscar</title>
+    <title>Usuarios - Añadir</title>
     <style>
          * {
             box-sizing: border-box;
@@ -125,30 +117,39 @@ $nfilas = mysqli_num_rows ($consulta);
             background-color: red;
             color: white;
         }
-        .table-th {
-            background-color: red;
-            text-align: center;
-            font-weight: bolder;
-            font-variant: small-caps;
-            color: white;
-            border: 3px black solid;
-        }
-        .tabla {
-            border: 3px black solid;
-            font-weight: bolder;
-            font-variant: small-caps;
-            color: black;
-            width: 90%;
-            border-collapse: collapse;
-            margin-top: 50px;
-            margin-left: 100px;
-
-        }
-        .td {
-            border: 3px black solid;
+        #elform {
+            padding-top: 50px;
             background-color: white;
+            width: 30%;
+            height: 530px;
+            align-items: center;
             text-align: center;
-
+            margin-top: 6%;
+            margin-left: 33%;
+            border-radius: 13px;
+            box-shadow: 5px 5px 5px black;
+        }
+        .letras {
+            font-variant: small-caps;
+            font-weight: bold;
+        }
+        #botones {
+            padding: 30px;
+            background-color: red;
+            color: white;
+            font-variant: small-caps;
+            font-weight: bolder;
+            border-radius: 10px;
+        }
+        .error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            text-align: center;
         }
     </style>
 </head>
@@ -163,8 +164,8 @@ $nfilas = mysqli_num_rows ($consulta);
                     print '<button class="boton">COCHES</button>';
                     print '<ul class="boton-opciones">';
                         print '<a href="../index.php"><li>Inicio</li></a>';
-                        print '<a href="./listar.php"><li>Listar</li></a>';
-                        print '<a href="./buscar.php"><li>Buscar</li></a>';
+                        print '<a href="../coches/listar.php"><li>Listar</li></a>';
+                        print '<a href="../coches/buscar.php"><li>Buscar</li></a>';
                     print '</ul>';
                 print '</div>';
                 print '<div class="menu">';
@@ -185,9 +186,9 @@ $nfilas = mysqli_num_rows ($consulta);
                     print '<button class="boton">COCHES</button>';
                     print '<ul class="boton-opciones">';
                         print '<a href="../index.php"><li>Inicio</li></a>';
-                        print '<a href="./añadir.php"><li>Añadir</li></a>';
-                        print '<a href="./listar.php"><li>Listar</li></a>';
-                        print '<a href="./buscar.php"><li>Buscar</li></a>';
+                        print '<a href="../coches/añadir.php"><li>Añadir</li></a>';
+                        print '<a href="../coches/listar.php"><li>Listar</li></a>';
+                        print '<a href="../coches/buscar.php"><li>Buscar</li></a>';
                     print '</ul>';
                 print '</div>';
                 print '<div class="menu">';
@@ -208,11 +209,11 @@ $nfilas = mysqli_num_rows ($consulta);
                         print '<button class="boton">COCHES</button>';
                         print '<ul class="boton-opciones">';
                             print '<a href="../index.php"><li>Inicio</li></a>';
-                            print '<a href="./añadir.php"><li>Añadir</li></a>';
-                            print '<a href="./borrar.php"><li>Eliminar</li></a>';
-                            print '<a href="./modificar.php"><li>Modificar</li></a>';
-                            print '<a href="./listar.php"><li>Listar</li></a>';
-                            print '<a href="./buscar.php"><li>Buscar</li></a>';
+                            print '<a href="../coches/añadir.php"><li>Añadir</li></a>';
+                            print '<a href="../coches/borrar.php"><li>Eliminar</li></a>';
+                            print '<a href="../coches/modificar.php"><li>Modificar</li></a>';
+                            print '<a href="../coches/listar.php"><li>Listar</li></a>';
+                            print '<a href="../coches/buscar.php"><li>Buscar</li></a>';
                         print '</ul>';
                     print '</div>';
                     print '<div class="menu">';
@@ -227,11 +228,11 @@ $nfilas = mysqli_num_rows ($consulta);
                         print '<button class="boton">USUARIOS</button>';
                         print '<ul class="boton-opciones">';
                             print '<a href="../index.php"><li>Inicio</li></a>';
-                            print '<a href="../usuario/añadir.php"><li>Añadir</li></a>';
-                            print '<a href="../usuario/borrar.php"><li>Eliminar</li></a>';
-                            print '<a href="../usuario/modificar.php"><li>Modificar</li></a>';
-                            print '<a href="../usuario/listar.php"><li>Listar</li></a>';
-                            print '<a href="../usuario/buscar.php"><li>Buscar</li></a>';
+                            print '<a href="./añadir.php"><li>Añadir</li></a>';
+                            print '<a href="./borrar.php"><li>Eliminar</li></a>';
+                            print '<a href="./modificar.php"><li>Modificar</li></a>';
+                            print '<a href="./listar.php"><li>Listar</li></a>';
+                            print '<a href="./buscar.php"><li>Buscar</li></a>';
                        print '</ul>';
                     print '</div>';
                     print '<div class="auth-buttons">';
@@ -245,8 +246,8 @@ $nfilas = mysqli_num_rows ($consulta);
                     print '<button class="boton">COCHES</button>';
                     print '<ul class="boton-opciones">';
                         print '<a href="../index.php"><li>Inicio</li></a>';
-                        print '<a href="./listar.php"><li>Listar</li></a>';
-                        print '<a href="./buscar.php"><li>Buscar</li></a>';
+                        print '<a href="../listar.php"><li>Listar</li></a>';
+                        print '<a href="../buscar.php"><li>Buscar</li></a>';
                     print '</ul>';
                 print '</div>';
                 print '<div class="menu">';
@@ -264,38 +265,22 @@ $nfilas = mysqli_num_rows ($consulta);
         ?>
     </div>
 </div>
+<div id="elform">
+    <form action="./añadir-proceso.php" method="post" enctype="multipart/form-data">
+    <h1>Añadir Usuario</h1><br>
+    <?php
+            if (ISSET($_SESSION['error']))
+            {
+                print '<p class="error">' . $_SESSION['error'] . '</p>';
+                unset($_SESSION['error']);
+            }
+        ?>
+        <label for="nombre" class="letras">Nombre:</label><br><input type="text" name="nombre" required><br><br>
+        <label for="apellido" class="letras">Apellido:</label> <br><input type="text" name="apellido" required><br><br>
+        <label for="contraseña" class="letras">Contraseña:</label> <br><input type="password" name="password" required><br><br>
+        <label for="DNI" class="letras">DNI:</label> <br><input type="text" name="dni" required><br><br>
+        <label>Comprador</label> <input type="radio" name="tipo" value="com" required>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Vendedor</label> <input type="radio" name="tipo" value="usr" required><br><br>
+        <input type="submit" value="Añadir Usuario" id="botones">
+    </form>
 </div>
-<div id='elform'>
-<?php
-    print ("<table class='tabla'>\n");
-    print ("<tr>\n");
-    print ("<th class='table-th'>Modelo</th>\n");
-    print ("<th class='table-th'>Marca</th>\n");
-    print ("<th class='table-th'>Color</th>\n");
-    print ("<th class='table-th'>Precio</th>\n");
-    print ("<th class='table-th'>Alquilado</th>\n");
-    print ("<th class='table-th'>Foto</th>\n");
-    print ("</tr>\n");
-    for ($i=0; $i<$nfilas; $i++)
-    {
-    $resultado = mysqli_fetch_array ($consulta);
-    echo $resultado["modelo"];
-    print ("<tr>\n");
-    print ("<td class='td'>" . $resultado['modelo'] . "</td>\n");
-    print ("<td class='td'>" . $resultado['marca'] . "</td>\n");
-    print ("<td class='td'>" . $resultado['color'] . "</td>\n");
-    print ("<td class='td'>" . $resultado['precio'] . "</td>\n");
-    print ("<td class='td'>" . $resultado['alquilado'] . "</td>\n");
-    print ("<td class='td'><img src='" . $resultado['foto'] . "'></td>\n");
-    print ("</tr>\n");
-    }
-
-    print ("</table>\n");
-echo "</div>";
-echo "</html>";
-?>
-</body>
 </html>
-<?php
-mysqli_close($conn);
-?>

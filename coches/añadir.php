@@ -229,12 +229,11 @@ if (!$conn)
                         print '<button class="boton">USUARIOS</button>';
                         print '<ul class="boton-opciones">';
                             print '<a href="../index.php"><li>Inicio</li></a>';
-                            print '<a href="./usuario/añadir.php"><li>Añadir</li></a>';
-                            print '<a href="./usuario/borrar.php"><li>Eliminar</li></a>';
-                            print '<a href="./usuario/modificar.php"><li>Modificar</li></a>';
-                            print '<a href="./usuario/listar.php"><li>Listar</li></a>';
-                            print '<a href="./usuario/buscar.php"><li>Buscar</li></a>';
-                            print '<a href="./usuario/buscar.php"><li>Buscar</li></a>';
+                            print '<a href="../usuario/añadir.php"><li>Añadir</li></a>';
+                            print '<a href="../usuario/borrar.php"><li>Eliminar</li></a>';
+                            print '<a href="../usuario/modificar.php"><li>Modificar</li></a>';
+                            print '<a href="../usuario/listar.php"><li>Listar</li></a>';
+                            print '<a href="../usuario/buscar.php"><li>Buscar</li></a>';
                        print '</ul>';
                     print '</div>';
                     print '<div class="auth-buttons">';
@@ -269,6 +268,7 @@ if (!$conn)
 </div>
 <div id="elform">
     <form action="./añadir-proceso.php" method="post" enctype="multipart/form-data">
+    <h1>Añadir Coche</h1><br>
     <?php
             if (ISSET($_SESSION['error']))
             {
@@ -280,7 +280,6 @@ if (!$conn)
         <label for="marca" class="letras">Marca:</label> <br><input type="text" name="marca" required><br><br>
         <label for="color" class="letras">Color:</label> <br><input type="text" name="color" required><br><br>
         <label for="precio" class="letras">Precio:</label> <br><input type="number" name="precio" required><br><br>
-        <label for="alquilado" class="letras">Alquilado:</label> <br><input type="checkbox" name="alquilado" value="1"><br><br>
         <label for="foto" class="letras">Foto:</label> <br><input type="file" name="foto" id="foto" accept="image/*"><br><br>
         <input type="submit" value="Añadir Coche" id="botones">
     </form>

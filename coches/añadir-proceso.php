@@ -14,7 +14,6 @@ $modelo = mysqli_real_escape_string($conn,$_REQUEST["modelo"]);
 $marca = mysqli_real_escape_string($conn,$_REQUEST["marca"]);
 $color = mysqli_real_escape_string($conn,$_REQUEST["color"]);
 $precio = mysqli_real_escape_string($conn,$_REQUEST["precio"]);
-$alquilado = mysqli_real_escape_string($conn,$_REQUEST["alquilado"]);
 $foto = '';
 if (isset($_FILES['foto']) && $_FILES['foto']['size'] > 0) 
 {
@@ -39,7 +38,7 @@ if (isset($_FILES['foto']) && $_FILES['foto']['size'] > 0)
             echo "Hubo un error al subir la foto.";
         }
 }
-$sql = "INSERT INTO coches (modelo, marca, color, precio, alquilado, foto) VALUES ('$modelo', '$marca', '$color', '$precio', '$alquilado', '$foto')";
+$sql = "INSERT INTO coches (modelo, marca, color, precio,foto) VALUES ('$modelo', '$marca', '$color', '$precio', '$foto')";
 if (mysqli_query($conn, $sql))
 {
     header('Location: ./listar.php');
