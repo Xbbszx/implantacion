@@ -5,10 +5,11 @@ $username = "root";
 $password = "rootroot";
 $dbname = "concesionario";
 $conn = mysqli_connect($servername, $username, $password, $dbname);
-if (!$conn) {
+if (!$conn)
+{
     die("Conexión fallida: " . mysqli_connect_error());
 }
-$sql = "SELECT * FROM coches";
+$sql = "SELECT * FROM usuarios";
 $consulta = mysqli_query ($conn,$sql);
 $nfilas = mysqli_num_rows ($consulta);
 ?>
@@ -18,7 +19,7 @@ $nfilas = mysqli_num_rows ($consulta);
     <meta charset="UTF-8">
     <link rel="icon" href="../img/link.jpg" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coches - Modificar</title>
+    <title>Usuarios - Modificar</title>
     <style>
         * {
             box-sizing: border-box;
@@ -168,17 +169,15 @@ $nfilas = mysqli_num_rows ($consulta);
             text-align: center;
         }
         #botones {
-            padding-left: 20px;
-            padding-right: 20px;
-            padding: 10px;
-            background-color: red;
-            color: white;
-            font-variant: small-caps;
-            font-weight: bolder;
-            border-radius: 10px;
-        }
-
-
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    padding: 10px;
+                    background-color: red;
+                    color: white;
+                    font-variant: small-caps;
+                    font-weight: bolder;
+                    border-radius: 10px;
+                }
     </style>
 </head>
 <body>
@@ -192,8 +191,8 @@ $nfilas = mysqli_num_rows ($consulta);
                     print '<button class="boton">COCHES</button>';
                     print '<ul class="boton-opciones">';
                         print '<a href="../index.php"><li>Inicio</li></a>';
-                        print '<a href="./listar.php"><li>Listar</li></a>';
-                        print '<a href="./buscar.php"><li>Buscar</li></a>';
+                        print '<a href="../coches/listar.php"><li>Listar</li></a>';
+                        print '<a href="../coches/buscar.php"><li>Buscar</li></a>';
                     print '</ul>';
                 print '</div>';
                 print '<div class="menu">';
@@ -214,9 +213,9 @@ $nfilas = mysqli_num_rows ($consulta);
                     print '<button class="boton">COCHES</button>';
                     print '<ul class="boton-opciones">';
                         print '<a href="../index.php"><li>Inicio</li></a>';
-                        print '<a href="./añadir.php"><li>Añadir</li></a>';
-                        print '<a href="./listar.php"><li>Listar</li></a>';
-                        print '<a href="./buscar.php"><li>Buscar</li></a>';
+                        print '<a href="../coches/añadir.php"><li>Añadir</li></a>';
+                        print '<a href="../coches/listar.php"><li>Listar</li></a>';
+                        print '<a href="../coches/buscar.php"><li>Buscar</li></a>';
                     print '</ul>';
                 print '</div>';
                 print '<div class="menu">';
@@ -237,11 +236,11 @@ $nfilas = mysqli_num_rows ($consulta);
                         print '<button class="boton">COCHES</button>';
                         print '<ul class="boton-opciones">';
                             print '<a href="../index.php"><li>Inicio</li></a>';
-                            print '<a href="./añadir.php"><li>Añadir</li></a>';
-                            print '<a href="./borrar.php"><li>Eliminar</li></a>';
-                            print '<a href="./modificar.php"><li>Modificar</li></a>';
-                            print '<a href="./listar.php"><li>Listar</li></a>';
-                            print '<a href="./buscar.php"><li>Buscar</li></a>';
+                            print '<a href="../coches/añadir.php"><li>Añadir</li></a>';
+                            print '<a href="../coches/borrar.php"><li>Eliminar</li></a>';
+                            print '<a href="../coches/modificar.php"><li>Modificar</li></a>';
+                            print '<a href="../coches/listar.php"><li>Listar</li></a>';
+                            print '<a href="../coches/buscar.php"><li>Buscar</li></a>';
                         print '</ul>';
                     print '</div>';
                     print '<div class="menu">';
@@ -256,11 +255,11 @@ $nfilas = mysqli_num_rows ($consulta);
                         print '<button class="boton">USUARIOS</button>';
                         print '<ul class="boton-opciones">';
                             print '<a href="../index.php"><li>Inicio</li></a>';
-                            print '<a href="../usuario/añadir.php"><li>Añadir</li></a>';
-                            print '<a href="../usuario/borrar.php"><li>Eliminar</li></a>';
-                            print '<a href="../usuario/modificar.php"><li>Modificar</li></a>';
-                            print '<a href="../usuario/listar.php"><li>Listar</li></a>';
-                            print '<a href="../usuario/buscar.php"><li>Buscar</li></a>';
+                            print '<a href="./añadir.php"><li>Añadir</li></a>';
+                            print '<a href="./borrar.php"><li>Eliminar</li></a>';
+                            print '<a href="./modificar.php"><li>Modificar</li></a>';
+                            print '<a href="./listar.php"><li>Listar</li></a>';
+                            print '<a href="./buscar.php"><li>Buscar</li></a>';
                        print '</ul>';
                     print '</div>';
                     print '<div class="auth-buttons">';
@@ -274,8 +273,8 @@ $nfilas = mysqli_num_rows ($consulta);
                     print '<button class="boton">COCHES</button>';
                     print '<ul class="boton-opciones">';
                         print '<a href="../index.php"><li>Inicio</li></a>';
-                        print '<a href="./listar.php"><li>Listar</li></a>';
-                        print '<a href="./buscar.php"><li>Buscar</li></a>';
+                        print '<a href="../listar.php"><li>Listar</li></a>';
+                        print '<a href="../buscar.php"><li>Buscar</li></a>';
                     print '</ul>';
                 print '</div>';
                 print '<div class="menu">';
@@ -293,37 +292,27 @@ $nfilas = mysqli_num_rows ($consulta);
         ?>
     </div>
 </div>
-</div>
 <?php
 echo "<div id='elform'>";
 echo "<form action='./modificar2.php' method='POST'>";
     print ("<table class='tabla'>\n");
     print ("<tr>\n");
     print ("<th class='table-th'>Modificar</th>\n");
-    print ("<th class='table-th'>Modelo</th>\n");
-    print ("<th class='table-th'>Marca</th>\n");
-    print ("<th class='table-th'>Color</th>\n");
-    print ("<th class='table-th'>Precio</th>\n");
-    print ("<th class='table-th'>Alquilado</th>\n");
-    print ("<th class='table-th'>Foto</th>\n");
+    print ("<th class='table-th'>Nombre</th>\n");
+    print ("<th class='table-th'>Apellido</th>\n");
+    print ("<th class='table-th'>DNI</th>\n");
+    print ("<th class='table-th'>Saldo</th>\n");
+    print ("<th class='table-th'>Rol</th>\n");
     print ("</tr>\n");
     while ($row = mysqli_fetch_assoc($consulta))
     {
     print ("<tr>\n");
-    print ("<td class='td'><input type='checkbox' name='id' value='" . $row['id_coche'] . "'></td>");
-    print ("<td class='td'>" . htmlspecialchars($row['modelo']) . "</td>\n");
-    print ("<td class='td'>" . htmlspecialchars($row['marca']) . "</td>\n");
-    print ("<td class='td'>" . htmlspecialchars($row['color']) . "</td>\n");
-    print ("<td class='td'>" . htmlspecialchars($row['precio']) . "</td>\n");
-    if ($resultado['alquilado'] == 0)
-    {
-        print ("<td class='td'>No alquilado</td>\n");
-    }
-    else
-    {
-        print ("<td class='td'>Alquilado</td>\n");
-    }
-    print ("<td class='td'><img src='" . $row['foto'] . "'></td>\n");
+    print ("<td class='td'><input type='checkbox' name='id' value='" . $row['id_usuario'] . "'></td>");
+    print ("<td class='td'>" . htmlspecialchars($row['nombre']) . "</td>\n");
+    print ("<td class='td'>" . htmlspecialchars($row['apellidos']) . "</td>\n");
+    print ("<td class='td'>" . htmlspecialchars($row['dni']) . "</td>\n");
+    print ("<td class='td'>" . htmlspecialchars($row['saldo']) . "</td>\n");
+    print ("<td class='td'>" . htmlspecialchars($row['admin']) . "</td>\n");
     print ("</tr>\n");
     }
     print ("</table><br>\n");
