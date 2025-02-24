@@ -17,17 +17,26 @@ $sql = "UPDATE usuarios SET nombre='$nombre' WHERE id_usuario=$id";
 $sql2 = "UPDATE usuarios SET apellidos='$apellidos' WHERE id_usuario=$id";
 $sql3 = "UPDATE usuarios SET dni='$dni' WHERE id_usuario=$id";
 $sql4 = "UPDATE usuarios SET saldo=$saldo WHERE id_usuario=$id";
-if (mysqli_query ($conn,$sql))
+if ($nombre != '')
 {
     mysqli_query ($conn,$sql);
+}
+if ($apellidos != '')
+{
     mysqli_query ($conn,$sql2);
+}
+if ($dni != '')
+{
     mysqli_query ($conn,$sql3);
+}
+if ($saldo != '')
+{
     mysqli_query ($conn,$sql4);
-    header('Location: ./listar.php');
 }
 else
 {
     $_SESSION['error'] = "Error al modificar";
     header('Location: ./modificar2.php');
 }
+header('Location: ./listar.php');
 ?>

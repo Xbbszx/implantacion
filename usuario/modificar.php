@@ -178,6 +178,23 @@ $nfilas = mysqli_num_rows ($consulta);
                     font-weight: bolder;
                     border-radius: 10px;
                 }
+                .boton-rojo {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .boton-rojo:active {
+            background-color: #a93226;
+            transform: scale(0.98);
+        }
     </style>
 </head>
 <body>
@@ -307,7 +324,7 @@ echo "<form action='./modificar2.php' method='POST'>";
     while ($row = mysqli_fetch_assoc($consulta))
     {
     print ("<tr>\n");
-    print ("<td class='td'><input type='checkbox' name='id' value='" . $row['id_usuario'] . "'></td>");
+    print ("<td class='td'><button name='id' value='" . $row['id_usuario'] . "' class='boton-rojo'>Modificar</button></td>");
     print ("<td class='td'>" . htmlspecialchars($row['nombre']) . "</td>\n");
     print ("<td class='td'>" . htmlspecialchars($row['apellidos']) . "</td>\n");
     print ("<td class='td'>" . htmlspecialchars($row['dni']) . "</td>\n");

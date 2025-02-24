@@ -11,5 +11,9 @@ if (isset($_REQUEST['delete_ids']) && is_array($_REQUEST['delete_ids']))
 $sql = "DELETE FROM coches WHERE id_coche IN ($ids_to_delete)";
 if (mysqli_query($conn, $sql))
 {
-    header('Location: ./listar.php');
+    $sql2 = "DELETE FROM alquileres WHERE id_coche IN ($ids_to_delete)";
+    if(mysqli_query($conn, $sql2))
+    {
+        header('Location: ./listar.php');
+    }
 }

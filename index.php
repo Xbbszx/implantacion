@@ -8,6 +8,10 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
     die("Conexión fallida: " . mysqli_connect_error());
 }
+$idkitik = $_SESSION['id'];
+$sql = "SELECT * FROM usuarios WHERE id_usuario=$idkitik";
+$res = mysqli_query($conn,$sql);
+$row = mysqli_fetch_assoc($res);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -137,6 +141,9 @@ if (!$conn) {
             max-width: 400px;
             width: 90%;
         }
+        .error {
+            color:red;
+        }
     </style>
 </head>
 <body>
@@ -253,9 +260,14 @@ if (!$conn) {
 </div>
 <div id="centro">
 <?php
+    if (ISSET($_SESSION['error']))
+    {
+        print '<p class="error">' . $_SESSION['error'] . '</p>';
+        unset($_SESSION['error']);
+    }
     if($_SESSION['tipo'] === 'adm'||$_SESSION['tipo'] === 'com'||$_SESSION['tipo'] === 'usr')
     {
-        echo "<b><p>Bienvenido " . $_SESSION['nombre'] . "</p><p>Tu saldo actualmente es de " . $_SESSION['saldo'] . "€</p></b>";
+        echo "<b><p>Bienvenido " . $_SESSION['nombre'] . "</p><p>Tu saldo actualmente es de " . $row['saldo'] . "€</p></b>";
     }
     else
     {

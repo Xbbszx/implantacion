@@ -38,7 +38,7 @@ if (isset($_FILES['foto']) && $_FILES['foto']['size'] > 0)
             echo "Hubo un error al subir la foto.";
         }
 }
-$sql = "INSERT INTO coches (modelo, marca, color, precio,foto) VALUES ('$modelo', '$marca', '$color', '$precio', '$foto')";
+$sql = "INSERT INTO coches (modelo, marca, color, precio, alquilado, foto) VALUES ('$modelo', '$marca', '$color', '$precio', 0, '$foto')";
 if (mysqli_query($conn, $sql))
 {
     header('Location: ./listar.php');

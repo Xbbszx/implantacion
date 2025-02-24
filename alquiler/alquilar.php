@@ -178,6 +178,23 @@ $nfilas = mysqli_num_rows ($consulta);
             font-weight: bolder;
             border-radius: 10px;
         }
+        .boton-rojo {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .boton-rojo:active {
+            background-color: #a93226;
+            transform: scale(0.98);
+        }
 
 
     </style>
@@ -193,8 +210,8 @@ $nfilas = mysqli_num_rows ($consulta);
                     print '<button class="boton">COCHES</button>';
                     print '<ul class="boton-opciones">';
                         print '<a href="../index.php"><li>Inicio</li></a>';
-                        print '<a href="./listar.php"><li>Listar</li></a>';
-                        print '<a href="./buscar.php"><li>Buscar</li></a>';
+                        print '<a href="../coches/listar.php"><li>Listar</li></a>';
+                        print '<a href="../coches/buscar.php"><li>Buscar</li></a>';
                     print '</ul>';
                 print '</div>';
                 print '<div class="menu">';
@@ -283,7 +300,7 @@ $nfilas = mysqli_num_rows ($consulta);
                     print '<button class="boton">ALQUILERES</button>';
                     print '<ul class="boton-opciones">';
                         print '<a href="../index.php"><li>Inicio</li></a>';
-                        print '<a href="../alquiler/listar.php"><li>Listar</li></a>';
+                        print '<a href="./listar.php"><li>Listar</li></a>';
                    print '</ul>';
                 print '</div>';
                 print '<div class="auth-buttons">';
@@ -311,7 +328,7 @@ echo "<form action='./alquilar-proceso.php' method='POST'>";
     while ($row = mysqli_fetch_assoc($consulta))
     {
     print ("<tr>\n");
-    print ("<td class='td'><input type='checkbox' name='alquilar' value='" . $row['id_coche'] . "'></td>");
+    print ("<td class='td'><button name='alquilar' value='" . $row['id_coche'] . "' class='boton-rojo'>Alquilar</button></td>");
     print ("<td class='td'>" . htmlspecialchars($row['modelo']) . "</td>\n");
     print ("<td class='td'>" . htmlspecialchars($row['marca']) . "</td>\n");
     print ("<td class='td'>" . htmlspecialchars($row['color']) . "</td>\n");
@@ -322,7 +339,6 @@ echo "<form action='./alquilar-proceso.php' method='POST'>";
     }
     print ("</table><br>\n");
     echo "<div id='sigma'>";
-    echo "<input type='submit' value='Alquilar' id='botones'>";
     echo "</div>";
     echo "</form>";
 ?>

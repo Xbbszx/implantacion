@@ -17,17 +17,26 @@ $sql = "UPDATE coches SET modelo='$modelo' WHERE id_coche=$id";
 $sql2 = "UPDATE coches SET marca='$marca' WHERE id_coche=$id";
 $sql3 = "UPDATE coches SET color='$color' WHERE id_coche=$id";
 $sql4 = "UPDATE coches SET precio=$precio WHERE id_coche=$id";
-if (mysqli_query ($conn,$sql))
+if ($modelo != '')
 {
     mysqli_query ($conn,$sql);
+}
+if ($marca != '')
+{
     mysqli_query ($conn,$sql2);
+}
+if ($color != '')
+{
     mysqli_query ($conn,$sql3);
+}
+if ($precio != '')
+{
     mysqli_query ($conn,$sql4);
-    header('Location: ./listar.php');
 }
 else
 {
     $_SESSION['error'] = "Error al modificar";
     header('Location: ./modificar2.php');
 }
+header('Location: ./listar.php');
 ?>

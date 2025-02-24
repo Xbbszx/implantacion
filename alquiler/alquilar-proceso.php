@@ -15,6 +15,10 @@ $sql = "SELECT * FROM coches WHERE id_coche = $coche";
 $consulta = mysqli_query ($conn,$sql);
 $nfilas = mysqli_num_rows ($consulta);
 $row = mysqli_fetch_assoc($consulta);
+$_SESSION['modelo'] = $row['modelo'];
+$_SESSION['marca'] = $row['marca'];
+$_SESSION['precio'] = $row['precio'];
+$_SESSION['foto'] = $row['foto'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -128,7 +132,7 @@ $row = mysqli_fetch_assoc($consulta);
             padding-top: 50px;
             background-color: white;
             width: 30%;
-            height: 500px;
+            height: 550px;
             align-items: center;
             text-align: center;
             margin-top: 6%;
@@ -183,8 +187,8 @@ $row = mysqli_fetch_assoc($consulta);
                     print '<button class="boton">COCHES</button>';
                     print '<ul class="boton-opciones">';
                         print '<a href="../index.php"><li>Inicio</li></a>';
-                        print '<a href="./listar.php"><li>Listar</li></a>';
-                        print '<a href="./buscar.php"><li>Buscar</li></a>';
+                        print '<a href="../coches/listar.php"><li>Listar</li></a>';
+                        print '<a href="../coches/buscar.php"><li>Buscar</li></a>';
                     print '</ul>';
                 print '</div>';
                 print '<div class="menu">';
@@ -273,7 +277,7 @@ $row = mysqli_fetch_assoc($consulta);
                     print '<button class="boton">ALQUILERES</button>';
                     print '<ul class="boton-opciones">';
                         print '<a href="../index.php"><li>Inicio</li></a>';
-                        print '<a href="../alquiler/listar.php"><li>Listar</li></a>';
+                        print '<a href="./listar.php"><li>Listar</li></a>';
                    print '</ul>';
                 print '</div>';
                 print '<div class="auth-buttons">';
@@ -293,13 +297,12 @@ $row = mysqli_fetch_assoc($consulta);
                 print '<p class="error">' . $_SESSION['error'] . '</p>';
                 unset($_SESSION['error']);
             }
-            echo "<p class='letrikitik'>Quieres alquilar el <b>" . $row['modelo'] . "</b><b> " . $row['marca'] . "</b> por un precio de <b>" . $row['precio'] . "€</b></p> <br>";
-            echo "<img src='" . $row['foto'] . "' class='ima'>";
+            echo "<p class='letrikitik'>Quieres alquilar el <b>" . $_SESSION['modelo'] . "</b><b> " . $_SESSION['marca'] . "</b> por un precio de <b>" . $_SESSION['precio'] . "€</b></p> <br>";
+            echo "<img src='" . $_SESSION['foto'] . "' class='ima'>";
             echo "<p class='letrikitik'>Ahora mismo dispones de un saldo de <b>" . $_SESSION['saldo'] . "€</p> <br>";
         ?>
         <input type="submit" value="Alquilar Coche" id="botones"> 
     </form>
-    <a href='./alquilar.php'><button id="botones">Volver</button></a>
 </div>
 </body>
 </html>

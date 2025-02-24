@@ -8,7 +8,7 @@ if (isset($_REQUEST['delete_ids']) && is_array($_REQUEST['delete_ids']))
 {
     $ids_to_delete = implode(",", array_map('intval', $_REQUEST['delete_ids']));
 }
-$sql = "DELETE FROM alquileres WHERE id_coche IN ($ids_to_delete)";
+$sql = "UPDATE alquileres SET devuelto=NOW() WHERE id_coche IN ($ids_to_delete)";
 if (mysqli_query($conn, $sql))
 {
     $sql2="UPDATE coches SET alquilado=0 WHERE id_coche IN ($ids_to_delete)";

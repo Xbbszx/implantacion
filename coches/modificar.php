@@ -177,7 +177,23 @@ $nfilas = mysqli_num_rows ($consulta);
             font-weight: bolder;
             border-radius: 10px;
         }
+        .boton-rojo {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
 
+        .boton-rojo:active {
+            background-color: #a93226;
+            transform: scale(0.98);
+        }
 
     </style>
 </head>
@@ -310,7 +326,7 @@ echo "<form action='./modificar2.php' method='POST'>";
     while ($row = mysqli_fetch_assoc($consulta))
     {
     print ("<tr>\n");
-    print ("<td class='td'><input type='checkbox' name='id' value='" . $row['id_coche'] . "'></td>");
+    print ("<td class='td'><button name='id' value='" . $row['id_coche'] . "' class='boton-rojo'>Modificar</button></td>");
     print ("<td class='td'>" . htmlspecialchars($row['modelo']) . "</td>\n");
     print ("<td class='td'>" . htmlspecialchars($row['marca']) . "</td>\n");
     print ("<td class='td'>" . htmlspecialchars($row['color']) . "</td>\n");
@@ -328,7 +344,6 @@ echo "<form action='./modificar2.php' method='POST'>";
     }
     print ("</table><br>\n");
     echo "<div id='sigma'>";
-    echo "<input type='submit' value='Modificar' id='botones'>";
     echo "</div>";
     echo "</form>";
 ?>

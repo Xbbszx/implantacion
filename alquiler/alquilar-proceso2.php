@@ -35,6 +35,6 @@ if($row['precio'] <= $_SESSION['saldo'])
 else
 {
     $_SESSION['error'] = "No hay saldo suficiente";
-    header('Location: ./alquilar-proceso.php');
+    header('Location: ../index.php');
 }
 ?>
